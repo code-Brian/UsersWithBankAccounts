@@ -82,12 +82,25 @@ class User():
             self.gold_points = self.gold_points - amount
             print(f"Not enough points to cover purchase. Initial points balance: {initial_points}. Amount requested: {amount} Please pay {new_amount} point(s) to complete your purchase.")
         return self
+
     def make_savings_deposit(self, amount):
         self.savingsAccount.deposit(amount)
     def make_savings_withdrawal(self, amount):
         self.savingsAccount.withdraw(amount)
     def display_user_savings_balance(self):
         self.savingsAccount.display_account_info()
+    
+    def make_checking_deposit(self, amount):
+        self.checkingAccount.deposit(amount)
+    def make_checking_withdrawal(self, amount):
+        self.checkingAccount.withdraw(amount)
+    def display_user_checking_balance(self):
+        self.checkingAccount.display_account_info()
+
+    def transfer_money(self, amount, other_user):
+        self.checkingAccount.withdraw(amount)
+        other_user.checkingAccount.deposit(amount)
+
 
 # ask why I can't chain the display_info methods to depost/withdraw methods
 rick = User("Rick", "Sanchez", "rick@r&m.org", 70)
@@ -95,3 +108,11 @@ rick.display_info()
 rick.make_savings_deposit(500)
 rick.display_info()
 rick.make_savings_withdrawal(100)
+
+morty = User("Morty", "Smith", "morty@r&m.org", 14)
+
+rick.checkingAccount.deposit(1000)
+rick.transfer_money(50,morty)
+
+morty.display_info()
+rick.display_info()

@@ -46,7 +46,7 @@ class User():
         self.age = age
         self.member = False
         self.gold_points = 0
-        self.account = BankAccount()
+        self.account = BankAccount(.04,0)
     
     def display_info(self):
         print(self.first_name)
@@ -78,3 +78,11 @@ class User():
             self.gold_points = self.gold_points - amount
             print(f"Not enough points to cover purchase. Initial points balance: {initial_points}. Amount requested: {amount} Please pay {new_amount} point(s) to complete your purchase.")
         return self
+    def make_deposit(self, amount):
+        self.account.deposit(amount)
+
+rick = User("Rick", "Sanchez", "rick@r&m.org", 70)
+rick.display_info()
+rick.make_deposit(500)
+rick.display_info()
+

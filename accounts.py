@@ -82,6 +82,8 @@ class User():
         self.account.deposit(amount)
     def make_withdrawal(self, amount):
         self.account.withdraw(amount)
+    def display_user_balance(self):
+        self.account.display_account_info()
 
 # ask why I can't chain the display_info methods to depost/withdraw methods
 rick = User("Rick", "Sanchez", "rick@r&m.org", 70)
@@ -90,4 +92,5 @@ rick.make_deposit(500)
 rick.display_info()
 rick.make_withdrawal(100)
 rick.display_info()
+rick.display_user_balance()
 
